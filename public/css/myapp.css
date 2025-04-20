@@ -1,0 +1,60 @@
+.flex-container {
+    display: flex; /* This enables Flexbox for its direct children */
+    /* border: 2px solid black; Optional: Just to visualize the container */
+    width: 100%; /* Make container take full available width (or set a specific width) */
+    /* You might want to add height or min-height */
+    /* min-height: 200px; */
+  }
+  
+  .flex-item {
+    /* Optional: Add padding, borders, etc. */
+    padding: 20px;
+    border: 2px solid rgb(0, 0, 0); /*Optional: To visualize the items*/
+    box-sizing: border-box; /* Important! Ensures padding/border are included in the width calculation */
+  }
+  
+  .half-width {
+    /* --- Flexbox Method 1: Using flex-grow (Recommended) --- */
+    flex: 1;
+    /*
+       Explanation:
+       - flex: 1; is shorthand for:
+         - flex-grow: 1; (Allow item to grow if space is available)
+         - flex-shrink: 1; (Allow item to shrink if needed)
+         - flex-basis: 0%; (Start distributing space from a base width of 0)
+       - Since both items have flex-grow: 1, they will share the available
+         space equally, resulting in 50% width each.
+    */
+  
+    /* --- Alternative Method 2: Using explicit width --- */
+    /* width: 50%; */
+    /*
+       Explanation:
+       - This explicitly sets the width to 50%.
+       - This works fine with Flexbox, but using `flex: 1;` is often
+         considered more idiomatic for equal space distribution.
+       - If using this, `box-sizing: border-box;` is crucial if you also
+         have padding or borders on the items, otherwise, they might
+         exceed 50% and wrap.
+    */
+  
+    /* --- Alternative Method 3: Using flex-basis --- */
+    /* flex-basis: 50%; */
+    /* flex-grow: 0;   */ /* Optional: Explicitly prevent growing */
+    /* flex-shrink: 0; */ /* Optional: Explicitly prevent shrinking */
+    /*
+       Explanation:
+       - Sets the initial "ideal" size to 50%.
+       - If grow/shrink are 0, it strictly adheres to this size.
+    */
+  
+  }
+  
+  /* Optional: Add different backgrounds to see them clearly */
+  /* .flex-item:nth-child(1) {
+    background-color: lightcyan;
+  }
+  
+  .flex-item:nth-child(2) {
+    background-color: lightyellow;
+  } */
