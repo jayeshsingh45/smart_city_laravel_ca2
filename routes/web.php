@@ -32,14 +32,19 @@ Route::get('/get-all-resource-info', function () {
 });
 
 
-Route::post('/update-water-level', function (Request $request) {
+Route::post('/update-water-level/{id}/{new_level}', function (Request $request,$id,$new_level) {
  
-    // Get all JSON data from the incoming request
-    // $jsonData = $request->json()->all();
+    // Cast both to integers
+    $id        = intval($id);
+    $newLevel  = intval($new_level);
     
-    // Or get specific fields from the JSON payload
-    $id = $request->json('id');
-    $newLevel = $request->json('water_level');
+    // // Or get specific fields from the JSON payload
+    // $id = intval($request->json('id'));
+    // $newLevel = intval($request->json('water_level'));
+
+
+
+    
 
 
     // Simple validation

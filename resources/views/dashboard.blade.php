@@ -47,14 +47,40 @@
     </div>
 
     <script>
-      function updateWaterTankLevel(id){
+      function delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+      async function updateWaterTankLevel(id){
         console.log("button clicked")
 
-        var currentWaterLevel = document.getElementById(`waterTankLevel1`).textContent
+        var currentWaterLevel = document.getElementById(`waterTankLevel${id}`).textContent
               
-        for (let i = 0; i < 100; i++) {
-          text += cars[i] + "<br>";
+        for (let i = currentWaterLevel; i <= 100; i++) {
+          console.log("looping")
+          await delay(1000); // wait 1 second
+
+          document.getElementById(`waterTankLevel1`).textContent = i;
+          document.getElementById(`waterLevelFill1`).style.width = `${i}%`
+
+          const url = `http://127.0.0.1:8000/update-water-level/${id}/${i}`;
+
+          try {
+              const res = await fetch(url, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json'
+              }
+          });
+            const data = await res.json();
+            console.log(data);
+          } catch (err) {
+            console.error('Fetch error:', err);
+          }
+          
+
         } 
+       
       }
 
 

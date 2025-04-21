@@ -19,3 +19,12 @@ CREATE TABLE IF NOT EXISTS `transformer` (
 	`status` text NOT NULL,
 	PRIMARY KEY (`id`)
 );
+
+
+
+
+INSERT INTO water_tank (id, location, water_level)
+VALUES (2, 'Sector 17', 75);
+
+
+DELETE FROM water_tank WHERE id = 2;
