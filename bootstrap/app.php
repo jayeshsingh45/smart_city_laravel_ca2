@@ -12,6 +12,12 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
+
+        $middleware->validateCsrfTokens(except: [
+            '/update-water-level',
+            '*',
+            
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
