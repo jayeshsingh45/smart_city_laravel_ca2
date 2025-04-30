@@ -22,13 +22,5 @@ CREATE TABLE IF NOT EXISTS `transformer` (
 
 
 
-
 INSERT INTO water_tank (id, location, water_level)
-VALUES (3, 'Sector 25', 75);
-
-INSERT INTO `dustbin` (`location`, `level`) VALUES
-('Near Lake View', 10);
-
-
-
-DELETE FROM water_tank WHERE id = 2;
+VALUES (1, 'Sector 25', 75);

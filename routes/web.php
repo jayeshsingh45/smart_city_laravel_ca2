@@ -63,18 +63,12 @@ Route::post('/update-water-level/{id}/{new_level}', function (Request $request,$
 });
 
 
-Route::post('/update-dustbin-level', function (Request $request) {
-    // Pull out the JSON inputs
-    $id       = $request->json('id');
-    $newLevel = $request->json('dustbin_level');
+Route::post('/update-dustbin-level/{id}/{new_level}', function (Request $request,$id,$new_level) {
+    
+    $id        = intval($id);
+    $newLevel  = intval($new_level);
 
-    // Basic validation
-    if (!$id || is_null($newLevel)) {
-        return response()->json([
-            'message' => 'Missing id or level'
-        ], 400);
-    }
-
+  
     // Perform the update
     $updated = DB::update(
         'UPDATE dustbin SET level = ? WHERE id = ?',
@@ -94,10 +88,10 @@ Route::post('/update-dustbin-level', function (Request $request) {
 
 
 //TRANSFORMER STATUS ROUTE
-Route::post('/set-status-transformer', function (Request $request) {
+Route::post('/set-status-transformer/{id}/{status}', function (Request $request,$id,$status) {
     // 1. Retrieve inputs from JSON body
-    $id     = $request->json('id');        // transformer record ID :contentReference[oaicite:0]{index=0}
-    $status = $request->json('status');    // desired status value :contentReference[oaicite:1]{index=1}
+    $id     = intval($id);
+    // $status = 
 
     // 2. Validate presence and allowed values
     $allowed = ['running', 'repair', 'stop'];  
